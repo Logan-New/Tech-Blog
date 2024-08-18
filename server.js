@@ -2,16 +2,18 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const routes = require('./routes/index');
+const routes = require('./routes'); // Import routes
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001; // Update port if necessary
 
 const sess = {
-  secret: process.env.SECRET,
-  cookie: {},
+  secret: process.env.SESSION_SECRET || 'your_default_secret', // Use environment variable or default secret
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 // Cookie expires in 24 hours
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -30,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(routes);
+app.use(routes); // Use routes
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
