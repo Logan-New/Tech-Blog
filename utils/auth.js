@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User } = require('../models/Index');
 
 // Route to handle user login
 router.post('/login', async (req, res) => {
@@ -48,15 +48,13 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// Route to handle user logout
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.redirect('/');
-    });
+// Middleware to protect routes
+const withAuth = (req, res, next) => {
+  if (!req.session.logged_in) {
+    res.redirect('/login');
   } else {
-    res.redirect('/');
+    next();
   }
-});
+};
 
-module.exports = router;
+module.exports = { router, withAuth };

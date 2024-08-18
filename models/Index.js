@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 const sequelize = require('../config/connection');
 
 // Import models
@@ -9,24 +8,24 @@ const Comment = require('./Comment');
 // Define model associations
 User.hasMany(Post, {
   foreignKey: 'user_id',
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
 });
 
 Post.belongsTo(User, {
-  foreignKey: 'user_id'
+  foreignKey: 'user_id',
 });
 
 Post.hasMany(Comment, {
   foreignKey: 'post_id',
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
 });
 
 Comment.belongsTo(Post, {
-  foreignKey: 'post_id'
+  foreignKey: 'post_id',
 });
 
 Comment.belongsTo(User, {
-  foreignKey: 'user_id'
+  foreignKey: 'user_id',
 });
 
 // Sync all models with the database
