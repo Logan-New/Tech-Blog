@@ -42,7 +42,7 @@ Post.belongsTo(Category, {
 // Sync all models with the database
 const syncModels = async () => {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: false });  // Set force: true to drop tables and recreate them
     console.log('Models synchronized with the database.');
   } catch (error) {
     console.error('Error synchronizing models:', error);

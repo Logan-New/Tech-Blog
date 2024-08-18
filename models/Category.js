@@ -14,14 +14,16 @@ Category.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true, // Reflects the unique constraint on the `name` column
     },
   },
   {
     sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'category',
+    modelName: 'Category', // Use the singular form for modelName
+    tableName: 'categories', // Matches the existing table name
+    timestamps: false,       // Set to true if your table has timestamp columns
+    freezeTableName: true,   // Ensures the table name is not pluralized
+    underscored: true,       // Use underscores for column names (if needed)
   }
 );
 
