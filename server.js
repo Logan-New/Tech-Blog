@@ -30,8 +30,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(routes); // This will use your routes file
-
+app.use('/', routes);// This will use your routes file
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server is running');
+});
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
 });
