@@ -35,9 +35,9 @@ User.init(
     },
     sequelize,
     timestamps: false,
-    freezeTableName: true,
+    freezeTableName: true, // Ensures the table name is not pluralized
     underscored: true,
-    modelName: 'user',
+    modelName: 'user', // Model name is singular
   }
 );
 

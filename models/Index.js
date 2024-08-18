@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Import models
 const User = require('./user');
 const Post = require('./post');
 const Comment = require('./comment');
@@ -38,17 +37,5 @@ Category.hasMany(Post, {
 Post.belongsTo(Category, {
   foreignKey: 'category_id'
 });
-
-// Sync all models with the database
-const syncModels = async () => {
-  try {
-    await sequelize.sync({ force: false });  // Set force: true to drop tables and recreate them
-    console.log('Models synchronized with the database.');
-  } catch (error) {
-    console.error('Error synchronizing models:', error);
-  }
-};
-
-syncModels();
 
 module.exports = { User, Post, Comment, Category };
