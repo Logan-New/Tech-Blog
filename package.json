@@ -1,0 +1,13 @@
+{
+  "name": "tech-blog",
+  "version": "1.0.0",
+  "description": "├── config\r │   └── connection.js\r ├── controllers\r │   ├── api\r │   │   ├── index.js\r │   │   ├── postRoutes.js\r │   │   ├── userRoutes.js\r │   │   └── commentRoutes.js\r │   └── homeRoutes.js\r ├── models\r │   ├── index.js\r │   ├── Post.js\r │   ├── User.js\r │   └── Comment.js\r ├── public\r │   ├── css\r │   └── js\r ├── seeds\r │   ├── seed.js\r ├── views\r │   ├── layouts\r │   │   └── main.handlebars\r │   ├── partials\r │   └── homepage.handlebars\r ├── .env\r ├── .gitignore\r ├── server.js\r └── package.json",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
