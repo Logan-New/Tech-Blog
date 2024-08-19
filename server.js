@@ -1,10 +1,10 @@
 const express = require('express');
 const session = require('express-session');
-const exphbs = require('express-handlebars');
 const path = require('path');
-const routes = require('./routes'); // Adjust path as needed
-const sequelize = require('./config/connection');
+const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sequelize = require('./config/connection'); // Adjust path if necessary
+const routes = require('./routes'); // Adjust path if necessary
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -37,6 +37,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes); // Ensure your routes file is correctly referenced
 
 // Sync Sequelize and start the server
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
-});
+sequelize.sync({ force: false })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
