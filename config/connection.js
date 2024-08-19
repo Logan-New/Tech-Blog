@@ -7,11 +7,11 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   port: process.env.DB_PORT || 5432,
   dialectOptions: {
     ssl: {
-      require: true, // This ensures that SSL is used
-      rejectUnauthorized: false // Adjust based on your security needs
+      require: true,
+      rejectUnauthorized: false
     }
   },
-  logging: false // Disable logging if desired
+  logging: false
 });
 
 module.exports = sequelize;
